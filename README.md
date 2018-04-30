@@ -22,3 +22,11 @@ to your operating system. After docker has been installed, proceed with the foll
 
 You can then navigate your browser to `http://localhost` to view the application. **NOTE** You 
 may need to go to the docker machines ip address if you're using boot2docker on the mac.
+
+#### Notes
+
+There are definitely chances for conflicts with the link generation given the way I approached it. 
+Given more time, there are a few approaches I would have used to solve this issue. An easy approach 
+would have been to refactor this method to check if the generated link already existed, and if so, 
+regenerate a new link. A better and more scalable approach would involve this solution, along with
+expiring links after a set amount of time.
