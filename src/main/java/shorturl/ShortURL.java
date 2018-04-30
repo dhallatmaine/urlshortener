@@ -1,26 +1,23 @@
 package shorturl;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.redis.core.RedisHash;
 
-@Entity
-public class ShortURL {
+import java.io.Serializable;
 
-  private Long id;
+@RedisHash("ShortURL")
+public class ShortURL implements Serializable {
+
+  private String id;
   private String originalURL;
   private String shortenedLink;
 
   public ShortURL() { }
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  public Long getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(String id) {
     this.id = id;
   }
 

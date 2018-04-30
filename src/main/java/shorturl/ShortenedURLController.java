@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Optional;
+
 
 @Controller
 public class ShortenedURLController {
@@ -35,11 +37,11 @@ public class ShortenedURLController {
   public String getShortURL(@ModelAttribute ShortURLRequest request, Model model) {
     ShortURL shortURL = new ShortURL();
     shortURL.setOriginalURL(request.getUrl());
-    shortURL.setShortenedLink(shortenService.generateLink());
+    shortURL.setId(shortenService.generateLink());
     shortenService.save(shortURL);
 
     model.addAttribute("originalURL", shortURL.getOriginalURL());
-    model.addAttribute("shortenedURL", shortURL.getShortenedLink());
+    model.addAttribute("shortenedURL", shortURL.getId());
     return "shortened";
   }
 

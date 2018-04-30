@@ -4,6 +4,8 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 public class ShortenService {
@@ -16,7 +18,7 @@ public class ShortenService {
   }
 
   public ShortURL getOriginalURL(String shortenedLink) {
-    return shortURLRepository.getByShortenedLink(shortenedLink);
+    return shortURLRepository.findById(shortenedLink).get();
   }
 
   public String generateLink() {
