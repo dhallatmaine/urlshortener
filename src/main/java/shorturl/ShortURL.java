@@ -9,7 +9,6 @@ public class ShortURL implements Serializable {
 
   private String id;
   private String originalURL;
-  private String shortenedLink;
 
   public ShortURL() { }
 
@@ -27,14 +26,6 @@ public class ShortURL implements Serializable {
 
   public void setOriginalURL(String originalURL) {
     this.originalURL = originalURL;
-  }
-
-  public String getShortenedLink() {
-    return shortenedLink;
-  }
-
-  public void setShortenedLink(String shortenedLink) {
-    this.shortenedLink = shortenedLink;
   }
 
 }
