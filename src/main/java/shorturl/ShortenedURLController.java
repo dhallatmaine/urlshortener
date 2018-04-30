@@ -1,13 +1,17 @@
 package shorturl;
 
-import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+
 @Controller
 public class ShortenedURLController {
+
+  @Autowired
+  ShortenService shortenService;
 
   @GetMapping("/")
   public String getIndexPage(Model model) {
@@ -16,18 +20,26 @@ public class ShortenedURLController {
   }
 
   @GetMapping("/{url}")
-  public ModelAndView url(@PathVariable(name="url") String url) {
-    // lookup url
-    return new ModelAndView("redirect:https://www.google.com");
+  public ModelAndView url(@PathVariable(name="url") String url, Model model) {
+    ShortURL shortURL = shortenService.getOriginalURL(url);
+    if (shortURL == null) {
+      model.addAttribute("shortURLRequest", new ShortURLRequest());
+      model.addAttribute("error", "Could not find link");
+      return new ModelAndView("url");
+    } else {
+      return new ModelAndView("redirect:" + shortURL.getOriginalURL());
+    }
   }
 
   @PostMapping(path = "/shorten")
   public String getShortURL(@ModelAttribute ShortURLRequest request, Model model) {
-    double random = Math.random() * 100000000;
-    String url = DigestUtils.md5Hex(Double.toString(random)).substring(0, 6);
+    ShortURL shortURL = new ShortURL();
+    shortURL.setOriginalURL(request.getUrl());
+    shortURL.setShortenedLink(shortenService.generateLink());
+    shortenService.save(shortURL);
 
-    model.addAttribute("originalURL", request.getUrl());
-    model.addAttribute("shortenedURL", url);
+    model.addAttribute("originalURL", shortURL.getOriginalURL());
+    model.addAttribute("shortenedURL", shortURL.getShortenedLink());
     return "shortened";
   }
 

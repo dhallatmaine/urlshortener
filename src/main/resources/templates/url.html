@@ -5,6 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+    <h2>Shorten URL</h2>
+    <p th:if="${error}" th:text="${error}" />
     <form action="#" th:action="@{/shorten}" th:object="${shortURLRequest}" method="post">
         <p>URL: <input type="text" th:field="*{url}" /></p>
         <p><input type="submit" value="Submit" /></p>
