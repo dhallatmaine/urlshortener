@@ -1,6 +1,5 @@
 /target
 .idea
-.mvn
 *.iml
 dump.rdb
 sudo
