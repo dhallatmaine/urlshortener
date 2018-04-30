@@ -22,8 +22,12 @@ public class ShortenService {
   }
 
   public String generateLink() {
-    double random = Math.random() * 100000000;
-    return DigestUtils.md5Hex(Double.toString(random)).substring(0, 7);
+    String random1 = Double.toString(Math.random() * 100000000);
+    String random2 = Double.toString(Math.random() * 100000000);
+    String random3 = Double.toString(Math.random() * 100000000);
+    String random4 = Double.toString(Math.random() * 100000000);
+    String random5 = Double.toString(Math.random() * 100000000);
+    return DigestUtils.md5Hex(random1 + random2 + random3 + random4 + random5).substring(0, 7);
   }
 
 }
