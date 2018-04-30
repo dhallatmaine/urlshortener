@@ -11,3 +11,11 @@ services:
     hostname: redis
     ports:
      - "6379:6379"
+  nginx:
+     container_name: shortener-nginx
+     image: nginx:1.13
+     restart: always
+     ports:
+     - 80:80
+     volumes:
+     - ./nginx/conf.d:/etc/nginx/conf.d
