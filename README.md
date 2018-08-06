@@ -1,6 +1,4 @@
-# URL Shortener - Derrick Hall
-
-This application was written for Schireson and is intended for a demostration purpose only
+# URL Shortener
 
 #### Structure
 
