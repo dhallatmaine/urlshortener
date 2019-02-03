@@ -16,16 +16,18 @@ public class ShortURL implements Serializable {
     return id;
   }
 
-  public void setId(String id) {
+  public ShortURL setId(String id) {
     this.id = id;
+    return this;
   }
 
   public String getOriginalURL() {
     return originalURL;
   }
 
-  public void setOriginalURL(String originalURL) {
+  public ShortURL setOriginalURL(String originalURL) {
     this.originalURL = originalURL;
+    return this;
   }
 
 }
